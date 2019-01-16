@@ -1,4 +1,5 @@
 # randomproto: Random protobuf object generator
+Refer to the [documentation](https://randomproto.readthedocs.io/en/latest/) for API reference.
 
 ## Installation
 `pip install randomproto`
