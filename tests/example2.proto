@@ -1,0 +1,80 @@
+syntax = "proto2";
+
+package example2;
+
+message TypeMessage {
+  // Scalar value types.
+  optional double double_field = 1;
+  optional float float_field = 2;
+  optional int32 int32_field = 3;
+  optional int64 int64_field = 4;
+  optional uint32 uint32_field = 5;
+  optional uint64 uint64_field = 6;
+  optional sint32 sint32_field = 7;
+  optional sint64 sint64_field = 8;
+  optional fixed32 fixed32_field = 9;
+  optional fixed64 fixed64_field = 10;
+  optional sfixed32 sfixed32_field = 11;
+  optional sfixed64 sfixed64_field = 12;
+  optional bool bool_field = 13;
+  optional string string_field = 14;
+  optional bytes bytes_field = 15;
+
+  // Enumerations.
+  enum Enum {
+    ENUM_INVALID = 0;
+    ENUM_ONE = 1;
+    ENUM_TWO = 2;
+  }
+  optional Enum enum_field = 16;
+
+  // Nested types.
+  message NestedMessage {
+    optional double double_field = 1;
+  }
+  optional NestedMessage msg_field = 17;
+}
+
+message LabeledMessage {
+  enum Enum {
+    ENUM_INVALID = 0;
+    ENUM_ONE = 1;
+    ENUM_TWO = 2;
+  }
+
+  message NestedMessage {
+    optional double double_field = 1;
+  }
+
+  // Required fields.
+  required double required_scalar = 1;
+  required Enum required_enum = 2;
+  required NestedMessage required_msg = 3;
+
+  // Optional fields.
+  optional double optional_scalar = 4;
+  optional Enum optional_enum = 5;
+  optional NestedMessage optional_msg = 6;
+
+  // Repeated fields.
+  repeated double repeated_scalar = 7;
+  repeated Enum repeated_enum = 8;
+  repeated NestedMessage repeated_msg = 9;
+}
+
+message DefaultMessage {
+  // Scalar value types.
+  optional double double_field = 1;
+  optional double double_field_default0 = 2 [default = 0];
+  optional double double_field_default1 = 3 [default = 1];
+
+  // Enumerations.
+  enum Enum {
+    ENUM_INVALID = 0;
+    ENUM_ONE = 1;
+    ENUM_TWO = 2;
+  }
+  optional Enum enum_field = 4;
+  optional Enum enum_field_default0 = 5 [default = ENUM_INVALID];
+  optional Enum enum_field_default1 = 6 [default = ENUM_ONE];
+}

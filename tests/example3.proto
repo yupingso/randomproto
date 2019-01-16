@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package example3;
+
+message TypeMessage {
+  // Scalar value types.
+  double double_field = 1;
+  float float_field = 2;
+  int32 int32_field = 3;
+  int64 int64_field = 4;
+  uint32 uint32_field = 5;
+  uint64 uint64_field = 6;
+  sint32 sint32_field = 7;
+  sint64 sint64_field = 8;
+  fixed32 fixed32_field = 9;
+  fixed64 fixed64_field = 10;
+  sfixed32 sfixed32_field = 11;
+  sfixed64 sfixed64_field = 12;
+  bool bool_field = 13;
+  string string_field = 14;
+  bytes bytes_field = 15;
+
+  // Enumerations.
+  enum Enum {
+    ENUM_INVALID = 0;
+    ENUM_ONE = 1;
+    ENUM_TWO = 2;
+  }
+  Enum enum_field = 16;
+
+  // Nested types.
+  message NestedMessage {
+    double double_field = 1;
+  }
+  NestedMessage msg_field = 17;
+}
+
+message LabeledMessage {
+  enum Enum {
+    ENUM_INVALID = 0;
+    ENUM_ONE = 1;
+    ENUM_TWO = 2;
+  }
+
+  message NestedMessage {
+    double double_field = 1;
+  }
+
+  // Optional fields.
+  double optional_scalar = 4;
+  Enum optional_enum = 5;
+  NestedMessage optional_msg = 6;
+
+  // Repeated fields.
+  repeated double repeated_scalar = 7;
+  repeated Enum repeated_enum = 8;
+  repeated NestedMessage repeated_msg = 9;
+}
