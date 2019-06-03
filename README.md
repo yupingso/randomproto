@@ -1,4 +1,9 @@
 # randomproto: Random protobuf object generator
+[![travis](https://travis-ci.org/yupingso/randomproto.svg?branch=master)](
+    https://travis-ci.org/yupingso/randomproto)
+[![codecov](https://codecov.io/github/yupingso/randomproto/branch/master/graphs/badge.svg?job=5406291412)](
+    https://codecov.io/gh/yupingso/randomproto)
+
 Refer to the [documentation](https://randomproto.readthedocs.io/en/latest/) for API reference.
 
 ## Installation
