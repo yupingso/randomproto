@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name='randomproto',
-    version='0.0.1rc2',
+    version='0.0.1',
     py_modules=('randomproto',),
     install_requires=[
         'protobuf>=3.6.0',
