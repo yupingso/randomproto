@@ -1,4 +1,4 @@
-PROTOC_IMAGE = registry.local.bridgewell.com/infrastructure/protoc:3.6.0
+PROTOC_IMAGE = znly/protoc:0.4.0
 UID := $(shell id -u)
 GID := $(shell id -g)
 
@@ -11,8 +11,9 @@ proto2:
 	docker run --rm -t \
 		--user $(UID):$(GID) \
 		-v $(shell pwd):/proto \
+		-w /proto \
 		$(PROTOC_IMAGE) \
-		/bin/sh -c "cd proto; protoc --python_out=. example2.proto"
+		--python_out=. -I. example2.proto
 
 .PHONY: proto3
 proto3:
@@ -20,8 +21,9 @@ proto3:
 	docker run --rm -t \
 		--user $(UID):$(GID) \
 		-v $(shell pwd):/proto \
+		-w /proto \
 		$(PROTOC_IMAGE) \
-		/bin/sh -c "cd proto; protoc --python_out=. example3.proto"
+		--python_out=. -I. example3.proto
 
 .PHONY: clean
 clean:

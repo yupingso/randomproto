@@ -1,0 +1,49 @@
+language: python
+
+python:
+  - "2.7"
+  - "3.5"
+  - "3.6"
+  - "pypy3.5"
+
+env:
+  JOB_NAME=test
+
+install:
+  - python setup.py install
+
+script:
+  - python --version
+  - python setup.py test
+
+jobs:
+  include:
+    - stage: test
+      name: lint
+      python: "3.6"
+      env: JOB_NAME=lint
+      script:
+        - pip install pylint
+        - pylint --version
+        - pylint randomproto.py tests/test_randomproto.py
+    - stage: deploy
+      name: deploy
+      if: branch = master
+      python: "3.6"
+      env: JOB_NAME=deploy
+
+after_success:
+  - pip install codecov
+  - test $JOB_NAME = "test" && test $TRAVIS_PYTHON_VERSION == "3.6" && codecov --required
+
+deploy:
+  provider: pypi
+  user: yupingso
+  password:
+    secure: G+at/NjNwTd5N0to4DQceCsCFbw9mrEwEvw1j5PT5ecbp4/ajT47izAIz+qvDMq+ecWoVguRT0jhRiM6RGAe6xAiR7+N7eY+WZFnQ4Z1SChx3Y3QW8UmOIWipUXW48ByTop0Yg2IaohS037cqexN0ATB94v2ZmazdRP32oNRDxLHUrkHGPKO5QiKXj5RmlDr3KnnASGjc6KtzN5IDX5dD/XdPWbLytwTXKOVXYkUIwRrYLQLQuSxipIJduM5nMVhaV/eq7/jq3WkGs8DOHUUL3Bvwp+arK3wMs3/SWzt7jBQrpNg6dwlNNNp604Kcn2Hkn7Fx6I7SrC/BtCp75p5mVz6W3MW0Cz1x3DAgRiJ+M1Swh6Qeo4cZQUCK/R1S/XM9P3J5BLkOekfqfRcEdG2Iqynepz06Le4gddm9zHGVG+99h1Q8N3Wfo/PRC5OqtFY852EaIcTbZSq5m/OBxWVHMPIXYEwUGjhEPLcjKskCO2n7lDPLwaAEZX3oX0QoCo0XVeftWidQ1EsmBCxVrX7xBX85J7i3vkEVfgmyT40ua5MIxf73+is4pvPaLiH2ScAe2qCWmwIPMZ90pSRAFB3BwWvuZXKIxMamD6uNJo3V24n7+LA/cooUiqK5kEQOaP55BUG20hExNB7cq77FhQnrRUTZLiARX+fpQBAGrfvgmE=
+  on:
+    branch:
+      - master
+    condition: $JOB_NAME = deploy
+  distributions: "sdist bdist_wheel"
+  skip_existing: true
