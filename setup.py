@@ -8,6 +8,14 @@ setuptools.setup(
     install_requires=[
         'protobuf>=3.6.0',
     ],
+    setup_requires=[
+        'pytest-runner',
+    ],
+    tests_require=[
+        'pytest==4.2.1',
+        'pytest-cov==2.6.1',
+        'pytest-mock==1.10.0',
+    ],
     author='Yu-Ping Wu',
     author_email='yupingso@gmail.com',
     description='Random protobuf object generator',
