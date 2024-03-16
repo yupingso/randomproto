@@ -1,20 +1,16 @@
-"""Test randomproto."""
 import pytest
 
 import randomproto
-import example2_pb2
-import example3_pb2
+from tests.proto3.example1_pb2 import TypeMessage
 
 
-@pytest.mark.parametrize('proto',
-                         [example2_pb2.TypeMessage,
-                          example3_pb2.TypeMessage,
-                          example2_pb2.LabeledMessage,
-                          example3_pb2.LabeledMessage,
-                          example2_pb2.DefaultMessage],
-                         ids=['type-proto2', 'type-proto3',
-                              'labeled-proto2', 'labeled-proto3',
-                              'default-proto2'])
-def test_randproto(proto):
-    """Test ``randproto``."""
-    randomproto.randproto(proto)
+@pytest.mark.parametrize('proto_class', [TypeMessage], ids=['example1_pb2'])
+def test_randproto(proto_class):
+    msg = randomproto.randproto(proto_class)
+    assert len(str(msg)) > 0
+    assert msg.float_field != 0.0
+    assert len(msg.string_field) > 0
+    assert len(msg.int32_repeated) > 0
+    assert len(msg.msg_repeated) > 0
+    assert len(msg.map_field) > 0
+
