@@ -12,9 +12,9 @@ setuptools.setup(
         'pytest-runner',
     ],
     tests_require=[
-        'pytest==4.2.1',
-        'pytest-cov==2.6.1',
-        'pytest-mock==1.10.0',
+        'pytest',
+        'pytest-cov',
+        'pytest-mock',
     ],
     author='Yu-Ping Wu',
     author_email='yupingso@gmail.com',
@@ -24,8 +24,12 @@ setuptools.setup(
     keywords='protobuf proto message random generate generator',
     url='https://github.com/yupingso/randomproto',
     classifiers=[
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
     ],
 )
