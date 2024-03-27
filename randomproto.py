@@ -1,3 +1,5 @@
+"""Random protobuf message generator."""
+
 import random
 import string
 import functools
